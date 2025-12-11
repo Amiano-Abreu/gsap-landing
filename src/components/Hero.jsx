@@ -3,11 +3,26 @@ import gsap from "gsap";
 import { SplitText } from "gsap/all"
 import { useRef } from "react";
 import { useMediaQuery } from "react-responsive";
+import { useScreenHeight } from "../hooks/useScreenHeight";
 
 const Hero = () => {
   const videoRef = useRef();
 
   const isMobile = useMediaQuery({ maxWidth: 767 })
+  const height = useScreenHeight();
+  let vidEnd = 120
+
+  if (height <= 700) {
+    vidEnd = 200
+  }
+
+  if (height > 700 && height <= 800 ) {
+    vidEnd = 160
+  }
+
+  if (height > 800 && height <= 900 ) {
+    vidEnd = 130
+  }
 
   useGSAP(() => {
     const heroSplit = new SplitText('.title', { type: 'chars, words' });
@@ -45,7 +60,7 @@ const Hero = () => {
       .to('.left-leaf', { y: -200 }, 0)
 
     const startValue = isMobile ? 'top 50%' : 'center 60%';
-    const endValue = isMobile ? '120% top' : 'bottom top';
+    const endValue = isMobile ? `${vidEnd}% top` : 'bottom top';
 
     const tl = gsap.timeline({
         scrollTrigger: {

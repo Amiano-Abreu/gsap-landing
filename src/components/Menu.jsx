@@ -101,7 +101,7 @@ const Menu = () => {
         </nav>
 
         <div className="content">
-            <div className="arrows">
+            <div className="arrows lg:pl-10">
                 <button 
                     className="text-left"
                     onClick={
